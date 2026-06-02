@@ -7,7 +7,7 @@ name = "insectnet"
 version = "0.1.0"
 description = "Real-time insect audio classifier for BirdNET-Pi"
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "CC-BY-NC-SA-4.0"}
 authors = [
     {name = "Pine Hollow Bioacoustics", email = "vortexpjeff@users.noreply.github.com"},
 ]

@@ -107,6 +107,10 @@ trained on BirdNET's 6,522-dim output space. These are deployed as a single
 
 To build and deploy a classifier, see [models/README.md](models/README.md).
 
+**Important:** Any classifier trained on InsectNet's data pipeline inherits
+the non-commercial restrictions of its training data and backbone model.
+See the [License](#license) section for details.
+
 Perch 2.0 embedding-based classifiers (used by the separate archive system)
 are not compatible with the Pi sidecar and live in the
 [pine-hollow-archive](https://github.com/vortexpjeff/pine-hollow-archive) repo.
@@ -152,7 +156,24 @@ insectnet/
 
 ## License
 
-MIT
+**CC BY-NC-SA 4.0** — This project is licensed under Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International.
+
+InsectNet is a derivative work. Its training data and backbone model carry their own
+licenses that also apply to derived models:
+
+| Component | License | Source |
+|-----------|---------|--------|
+| InsectNet code | CC BY-NC-SA 4.0 | This repository |
+| BirdNET-Pi (forked) | CC BY-NC-SA 4.0 | mcguirepr89/BirdNET-Pi |
+| BirdNET TFLite model | CC BY-NC-SA 4.0 | K. Lisa Yang Center |
+| Training data: InsectSet459 | CC BY-NC-SA 4.0 | HuggingFace |
+| Training data: iNatSounds | CC BY-NC 4.0 | iNaturalist |
+| Training data: ESC-50 | CC BY-NC 4.0 | K. J. Piczak |
+| Field captures (Pine Hollow) | CC BY-NC-SA 4.0 | Pine Hollow Bioacoustics |
+
+All components restrict commercial use. Derivative classifiers trained on any
+combination of the above must adopt a compatible non-commercial license.
 
 ## Related
 
