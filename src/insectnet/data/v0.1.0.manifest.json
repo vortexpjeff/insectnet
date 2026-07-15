@@ -1,0 +1,64 @@
+{
+  "artifact": {
+    "bytes": 474892,
+    "format": "joblib",
+    "path": "classifier.joblib",
+    "sha256": "5e6ecfc68d78a2cf2e9e9e47da5cb58d696e8de354fd620cfcccc5db9da48702"
+  },
+  "known_limitations": [
+    "The artifact does not embed its own version, thresholds, backbone hash, or training manifest.",
+    "Later audits found a high false-positive rate on some bird vocalizations.",
+    "Bee and grasshopper classes were data-limited in the surviving evaluation notes.",
+    "Published metrics came from limited public-data evaluation and one private field site; they are not evidence of general production performance.",
+    "Outputs are model assertions for human review, not confirmed biological observations."
+  ],
+  "model_contract": {
+    "backbone": {
+      "artifact": "BirdNET_GLOBAL_6K_V2.4_Model_FP16.tflite",
+      "sha256": "5c64ba3ffab264ccbfafe784896392051a86be63b0cc507e7683db7df114546b"
+    },
+    "classes": [
+      "background",
+      "bee",
+      "cicada_drone",
+      "cricket_katydid",
+      "frog",
+      "grasshopper"
+    ],
+    "feature_dimension": 6522,
+    "feature_space": "birdnet_v2.4_logits",
+    "output_semantics": "independent one-vs-rest probabilities",
+    "sample_rate_hz": 48000,
+    "serialization_runtime": {
+      "scikit_learn": "1.8.0"
+    },
+    "window_seconds": 3.0
+  },
+  "provenance": {
+    "code_license": "CC-BY-NC-SA-4.0",
+    "field_site": "one private field site; location intentionally omitted",
+    "source_families": [
+      {
+        "license": "CC-BY-4.0 or CC0 according to source metadata",
+        "name": "InsectSet459"
+      },
+      {
+        "license": "CC-BY-NC-3.0",
+        "name": "ESC-50"
+      },
+      {
+        "license": "varies by individual recording; original per-record manifest unavailable",
+        "name": "iNaturalist audio"
+      },
+      {
+        "license": "private research evidence; not redistributed",
+        "name": "private field negatives"
+      }
+    ],
+    "training_snapshot": "unavailable",
+    "warning": "The missing per-record training snapshot prevents a complete independent rebuild of this exact artifact."
+  },
+  "release_id": "insectnet-v0.1.0",
+  "schema_version": 1,
+  "status": "historical_research_reference"
+}
