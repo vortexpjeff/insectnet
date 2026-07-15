@@ -25,6 +25,11 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.6"]
+training = [
+  "pyarrow>=24.0",
+  "requests>=2.33",
+  "tensorflow>=2.21",
+]
 
 [project.scripts]
 insectnet = "insectnet.cli:main"

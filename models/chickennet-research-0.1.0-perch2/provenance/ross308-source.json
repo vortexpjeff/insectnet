@@ -1,0 +1,22 @@
+{
+  "ambient_policy": "Fons1 validation, Fons2 test, sampled every 30 seconds",
+  "archive": "Broiler_Recordings.zip",
+  "archive_bytes": 304283565,
+  "archive_md5": "cadf1efd32e42b9c35007077ef57c3bc",
+  "archive_sha256": "e0d28d9210d1bad9f8a996338d01285ffe6f518c20c3f442132ace969cf8a680",
+  "event_policy": "clean annotations greedily merged into non-overlapping 5-second parent contexts",
+  "license_spdx": "CC-BY-4.0",
+  "metadata_sha256": "c543321b660703799f4ef5cf458066e7c6933c32ee5aa46e3e1522008559cc74",
+  "published_md5": "cadf1efd32e42b9c35007077ef57c3bc",
+  "readme": "Ross308-Readme.txt",
+  "readme_sha256": "1c4c4d187d91b47b3b118ee2bab5c352887ef2097511d73fd0ed79d16d322694",
+  "retrieved_at": "2026-07-15T14:14:46-04:00",
+  "rights_lane": "core_releasable",
+  "schema_version": 1,
+  "source_id": "ross308-data3437-v1",
+  "source_url": "https://doi.org/10.34810/DATA3437",
+  "split_policy": "birds 1-4 train, bird 5 validation, bird 6 test; both health groups kept together by number",
+  "target_policy": "audible vocalization only; health and lighting retained as provenance",
+  "title": "Vocalization Audio Dataset of Ross-308 Broiler Chickens",
+  "version_doi": "10.34810/DATA3437"
+}

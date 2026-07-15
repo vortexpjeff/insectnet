@@ -1,0 +1,75 @@
+{
+  "artifact": "insectnet-research-0.2.0-perch2.joblib",
+  "artifact_sha256": "27bf603a6dec2df2789b3bf9241f5e035ccdea5909c4ecf252623ff9304afe32",
+  "challenge": "inaturalist-domestic-dog-2026-07-15",
+  "challenge_windows_sha256": "a99b6cd822dac4102f7d27af400c001e768dfc75e05866c4cffe3c3249793250",
+  "embeddings_sha256": "fc4c0b2006b76c9383c7a53130967ccf5078b989f7d8df85bc09e3b7c3a8537a",
+  "groups": 26,
+  "hierarchy_gated_outputs": {
+    "cicada": {
+      "rate": 0.19230769230769232,
+      "windows": 5
+    },
+    "insect_present": {
+      "rate": 0.4230769230769231,
+      "windows": 11
+    },
+    "orthoptera": {
+      "rate": 0.07692307692307693,
+      "windows": 2
+    }
+  },
+  "interpretation": "Untouched one-sound-per-observer dog taxon challenge. Incidental background insects remain possible; no sample used for fitting or threshold selection.",
+  "label_hierarchy": {
+    "cicada": "insect_present",
+    "orthoptera": "insect_present"
+  },
+  "mode": "negative",
+  "primary_class": "insect_present",
+  "primary_gated_rate": 0.4230769230769231,
+  "raw_head_crossings": {
+    "cicada": {
+      "rate": 0.2692307692307692,
+      "score_quantiles": {
+        "0.0": 1.11626938980062e-06,
+        "0.1": 1.2366616727907712e-05,
+        "0.5": 0.0035033912262819444,
+        "0.9": 0.8217172902693652,
+        "0.99": 0.9805144669993222,
+        "1.0": 0.9853718445607461
+      },
+      "windows": 7
+    },
+    "insect_present": {
+      "rate": 0.4230769230769231,
+      "score_quantiles": {
+        "0.0": 0.0005045055336592435,
+        "0.1": 0.008965405095045804,
+        "0.5": 0.18808239351098216,
+        "0.9": 0.9547471711893459,
+        "0.99": 0.9772469234423136,
+        "1.0": 0.9793810908348848
+      },
+      "windows": 11
+    },
+    "orthoptera": {
+      "rate": 0.15384615384615385,
+      "score_quantiles": {
+        "0.0": 3.74585039109168e-06,
+        "0.1": 0.00016565902871588803,
+        "0.5": 0.07315098045618916,
+        "0.9": 0.8492702902344427,
+        "0.99": 0.9838834907452618,
+        "1.0": 0.9987072924168664
+      },
+      "windows": 4
+    }
+  },
+  "samples": 26,
+  "schema_version": 1,
+  "thresholds_locked_before_challenge": {
+    "cicada": 0.08,
+    "insect_present": 0.25,
+    "orthoptera": 0.74
+  }
+}

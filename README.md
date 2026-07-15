@@ -17,7 +17,10 @@ datasets:
 
 InsectNet v0.1.0 is a preserved research classifier for scoring insect- and amphibian-related acoustic classes from frozen BirdNET v2.4 output logits.
 
-This repository intentionally contains one model artifact and one release identity. It does **not** publish live sensor addresses, deployment credentials, exact collection locations, private media, or an unattended capture service.
+This repository preserves one canonical v0.1 release identity and also carries separately
+versioned Perch 2 research candidates. It does **not** publish live sensor addresses,
+deployment credentials, exact collection locations, private media, or an unattended
+capture service.
 
 ## Release identity
 
@@ -70,7 +73,6 @@ The model file does not embed thresholds, a version number, or its original trai
 - device addresses or credentials;
 - exact collection locations;
 - raw or private field audio;
-- later experimental model candidates;
 - claims of production readiness.
 
 The original live sidecar diverged from the public v0.1 source during field experiments. That runtime is not republished here until it can be recovered, tested, and released under a separate reviewed version.
@@ -109,6 +111,27 @@ The command returns one probability per declared class. These scores are model a
 - Exact reproduction is blocked because the original per-record training snapshot is unavailable.
 - The classifier relies on BirdNET logits and cannot score raw audio by itself.
 - There is no validated automated-decision threshold policy in this release.
+
+## Perch 2 research candidates
+
+Two provenance-locked candidates were trained and audited in July 2026. Neither replaces
+the preserved BirdNET-logit v0.1 artifact.
+
+| Candidate | Status | Key external result |
+|---|---|---|
+| [ChickenNet Research 0.1.0](models/chickennet-research-0.1.0-perch2/MODEL_CARD.md) | research candidate; not deployed | 33/42 broad-head hits on a locked iNaturalist chicken challenge; 10/1,308 candidate activations on a private local confound set |
+| [InsectNet Research 0.2.0](models/insectnet-research-0.2.0-perch2/MODEL_CARD.md) | trained but not field-ready; not deployed | 11/26 broad activations on an untouched iNaturalist dog challenge |
+
+Both artifacts consume 1,536-dimensional Google Perch 2 embeddings from five-second,
+32 kHz mono windows. They include exact model/data hashes, grouped split reports,
+hierarchy contracts, source summaries, and challenge reports. They do not include Perch
+weights or source audio.
+
+## Training strategy
+
+[`docs/PERCH2_TRAINING_STRATEGY.md`](docs/PERCH2_TRAINING_STRATEGY.md) records the
+provenance-first design used for the Perch 2 InsectNet and ChickenNet candidates. Those
+candidates remain separate from the preserved v0.1.0 artifact.
 
 ## Provenance
 

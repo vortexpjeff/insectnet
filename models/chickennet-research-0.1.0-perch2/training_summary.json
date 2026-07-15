@@ -1,0 +1,160 @@
+{
+  "artifact": "chickennet-research-0.1.0-perch2.joblib",
+  "artifact_bytes": 71796,
+  "artifact_sha256": "a5b83b648b19d2837fe775161cf35fce22f2a717e630c08253f2b9c6d2fe58d0",
+  "classes": [
+    "chicken_vocalization_present",
+    "chicken_crow",
+    "chicken_other_vocalization"
+  ],
+  "counts": {
+    "label": {
+      "chicken_crow": 40,
+      "chicken_other_vocalization": 298,
+      "chicken_vocalization_present": 338
+    },
+    "partition": {
+      "test": 363,
+      "train": 1584,
+      "validation": 370
+    },
+    "rights_lane": {
+      "core_releasable": 317,
+      "research_noncommercial": 2000
+    },
+    "source": {
+      "esc50": 2000,
+      "ross308": 317
+    }
+  },
+  "created_at": "2026-07-15T15:28:44-04:00",
+  "dataset_hash": "974df55df9a3262944e32563e1111cf6f32cf52a128548a39aab5d69852bc3b0",
+  "datasets": [
+    {
+      "embeddings_sha256": "7566340a0a5a5803a5ed3ff1694f9f32f951140ecf468fa3d550ecf978115b31",
+      "name": "ross308",
+      "samples": 317,
+      "window_ids_sha256": "d48fedcd61fa83b3178dc67fddad1b2636a8629c9d07d37e68ff7662a096f3a2",
+      "windows_manifest_sha256": "cf1b81acbdb1c4d4f9ff4a1d9ef62203a68c4a8f94079d5dd005abd036e0968b"
+    },
+    {
+      "embeddings_sha256": "3746d0dd10ca8faafc87e3e3807849d859690d7f8b6f15719b9f74ab536e41d5",
+      "name": "esc50",
+      "samples": 2000,
+      "window_ids_sha256": "498bb803bc771d3b95cad2b2e353eb8764625e718b640c15dec7a15ce8a90441",
+      "windows_manifest_sha256": "8480edc070c8857aab7b411d6660038e37117ffc337904d0c24b85fbcfcceb01"
+    }
+  ],
+  "deployment_status": "research_candidate_not_deployed",
+  "feature_contract": {
+    "backbone": "Google Perch 2 CPU",
+    "embedding_dimension": 1536,
+    "input": "5 seconds, 32 kHz, mono, float32",
+    "perch_model_tree_sha256": "3fb2d54b3e34534f1130052b25737e54bbb5ebfd340ec040d4510772b64c81ff"
+  },
+  "label_hierarchy": {
+    "chicken_crow": "chicken_vocalization_present",
+    "chicken_other_vocalization": "chicken_vocalization_present"
+  },
+  "linear_svm_audit": {
+    "model_family": "linear_svc_audit_only",
+    "per_class": {
+      "chicken_crow": {
+        "test_average_precision": 1.0,
+        "test_f1": 1.0,
+        "test_precision": 1.0,
+        "test_recall": 1.0,
+        "test_support": 4,
+        "threshold": -0.5301895220129107
+      },
+      "chicken_other_vocalization": {
+        "test_average_precision": 0.9988876529477199,
+        "test_f1": 0.9734513274336283,
+        "test_precision": 1.0,
+        "test_recall": 0.9482758620689655,
+        "test_support": 58,
+        "threshold": 0.23135691510801992
+      },
+      "chicken_vocalization_present": {
+        "test_average_precision": 0.9992194275684834,
+        "test_f1": 0.9752066115702479,
+        "test_precision": 1.0,
+        "test_recall": 0.9516129032258065,
+        "test_support": 62,
+        "threshold": 0.1295193368970624
+      }
+    },
+    "score_semantics": "uncalibrated decision score",
+    "test_macro_average_precision": 0.9993690268387344,
+    "test_macro_f1": 0.9828859796679588
+  },
+  "metrics": {
+    "test": {
+      "macro_average_precision": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "chicken_crow": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 4
+        },
+        "chicken_other_vocalization": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 58
+        },
+        "chicken_vocalization_present": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 62
+        }
+      },
+      "samples": 363
+    },
+    "validation": {
+      "macro_average_precision": 0.9998570938711783,
+      "macro_f1": 0.9951244684069112,
+      "per_class": {
+        "chicken_crow": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 6
+        },
+        "chicken_other_vocalization": {
+          "average_precision": 0.9997668997668996,
+          "f1": 0.9923664122137404,
+          "precision": 0.9848484848484849,
+          "recall": 1.0,
+          "support": 65
+        },
+        "chicken_vocalization_present": {
+          "average_precision": 0.9998043818466353,
+          "f1": 0.993006993006993,
+          "precision": 0.9861111111111112,
+          "recall": 1.0,
+          "support": 71
+        }
+      },
+      "samples": 370
+    }
+  },
+  "model_name": "chickennet-research",
+  "random_state": 42,
+  "samples": 2317,
+  "schema_version": 1,
+  "thresholds": {
+    "chicken_crow": 0.2,
+    "chicken_other_vocalization": 0.34,
+    "chicken_vocalization_present": 0.21
+  },
+  "training_manifest_sha256": "8fc1a6863937cd11a747be7cf8c8ff21fe75d53645bda00043799b486216403f",
+  "version": "0.1.0-perch2"
+}

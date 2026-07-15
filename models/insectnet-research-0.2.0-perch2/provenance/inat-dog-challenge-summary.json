@@ -1,0 +1,14 @@
+{
+  "exclusions_manifest_sha256": "c1c0b9e36932c1cc23e1cc159c237916059a40b49d24846815bd2a0df660d681",
+  "licenses": {
+    "CC-BY-4.0": 20,
+    "CC0-1.0": 6
+  },
+  "observers": 26,
+  "recordings": 26,
+  "recordings_manifest_sha256": "e8bd278e46089e190a6de86c952ee3961fb16e2edc1ebcc57e89d5850f575fdf",
+  "schema_version": 1,
+  "source_id": "inaturalist-domestic-dog-2026-07-15",
+  "windows": 26,
+  "windows_manifest_sha256": "a99b6cd822dac4102f7d27af400c001e768dfc75e05866c4cffe3c3249793250"
+}

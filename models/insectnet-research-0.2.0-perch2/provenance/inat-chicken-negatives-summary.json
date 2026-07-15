@@ -1,0 +1,18 @@
+{
+  "partition_policy": "deterministic SHA-256 by existing group_id: 70/15/15",
+  "partitions": {
+    "test": 2,
+    "train": 29,
+    "validation": 11
+  },
+  "reason": "Domestic Chicken taxon sound; no insect target annotation, incidental background insects remain possible",
+  "rights_lanes": {
+    "core_releasable": 42
+  },
+  "role": "insectnet_hard_negative",
+  "schema_version": 1,
+  "source_windows_manifest": "windows.jsonl",
+  "source_windows_manifest_sha256": "7011c1f5e73f6c7771eff9ee62b04359f2cb61714c92c51e3cdc37364718d075",
+  "windows": 42,
+  "windows_manifest_sha256": "9ba2063ef48f77da16c280182a68b2701676c316c1a2e43c35786dcfd44dd39d"
+}

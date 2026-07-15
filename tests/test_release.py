@@ -25,9 +25,17 @@ def test_exact_v01_artifact_is_preserved() -> None:
     assert hashlib.sha256(MODEL.read_bytes()).hexdigest() == EXPECTED_SHA256
 
 
-def test_v01_is_the_only_model_artifact() -> None:
-    artifacts = sorted(ROOT.rglob("*.joblib"))
+def test_v01_is_the_only_canonical_packaged_model_artifact() -> None:
+    artifacts = sorted((ROOT / "src" / "insectnet" / "data").glob("*.joblib"))
     assert artifacts == [MODEL]
+
+
+def test_research_artifacts_are_separately_versioned() -> None:
+    artifacts = sorted((ROOT / "models").glob("*/*.joblib"))
+    assert [path.relative_to(ROOT).as_posix() for path in artifacts] == [
+        "models/chickennet-research-0.1.0-perch2/chickennet-research-0.1.0-perch2.joblib",
+        "models/insectnet-research-0.2.0-perch2/insectnet-research-0.2.0-perch2.joblib",
+    ]
 
 
 def test_release_manifest_declares_exact_contract() -> None:

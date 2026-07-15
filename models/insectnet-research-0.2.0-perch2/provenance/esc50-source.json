@@ -1,0 +1,20 @@
+{
+  "archive": "ESC-50-master.zip",
+  "archive_bytes": 645695005,
+  "archive_sha256": "805afc618aff80eff0641d51311647871fead5807da68bb18e43a27db47a79ce",
+  "group_policy": "original Freesound src_file; overrides official folds because source IDs cross them",
+  "license_spdx": "CC-BY-NC-3.0",
+  "metadata_sha256": "ca660da60191a97de289983a05821c9382d852a38a2ba8428980816b68cf6246",
+  "model_role": "esc50-insectnet",
+  "official_fold_audit": {
+    "sources_crossing_folds": 4
+  },
+  "repository_revision_observed": "33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6",
+  "retrieved_at": "2026-07-15T14:17:59-04:00",
+  "rights_lane": "research_noncommercial",
+  "schema_version": 1,
+  "source_id": "esc50-master",
+  "source_url": "https://github.com/karolpiczak/ESC-50",
+  "split_policy": "deterministic SHA-256 split by original Freesound src_file: 70/15/15",
+  "title": "ESC-50"
+}

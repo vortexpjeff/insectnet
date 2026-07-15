@@ -1,0 +1,22 @@
+{
+  "annotation_decisions_sha256": "2731d5904e1085bd4092003f52e0db64bb36a4e3f97119a908bc6768f5899d89",
+  "annotations": 1420,
+  "clean_annotations": 1122,
+  "exclusions": 302,
+  "exclusions_manifest_sha256": "1ba7b5912e7af92eae2394271fc40ff4233934c4bbe7b0cc5dd608db72a87da9",
+  "labels": {
+    "chicken_other_vocalization": 258,
+    "chicken_vocalization_present": 258
+  },
+  "noisy_annotations": 298,
+  "partitions": {
+    "test": 74,
+    "train": 150,
+    "validation": 93
+  },
+  "recordings": 26,
+  "recordings_manifest_sha256": "745f5f3ba7d7e1cd297bd2192f3c19d00af66aa6d36e0ba5d1913908955e3ee0",
+  "source_id": "ross308-data3437-v1",
+  "windows": 317,
+  "windows_manifest_sha256": "cf1b81acbdb1c4d4f9ff4a1d9ef62203a68c4a8f94079d5dd005abd036e0968b"
+}

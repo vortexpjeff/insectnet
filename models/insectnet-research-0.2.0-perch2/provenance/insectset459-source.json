@@ -1,0 +1,28 @@
+{
+  "accepted_licenses": [
+    "CC-BY-4.0",
+    "CC0-1.0"
+  ],
+  "annotation": {
+    "bytes": 6860191,
+    "filename": "InsectSet459_Train_Val_Test_Annotation.csv",
+    "sha256": "8fb04756ac82f0a467f7303f8071ab4b14d573952cbe5cb30669c084be02850a",
+    "upstream_checksum": "md5:f3cb378e2c3b8ba5704f37ee0bb6d8a6"
+  },
+  "notes": [
+    "HF conversion exposes train and validation only; original test archive is absent.",
+    "Partitions are reassigned deterministically by contributor to prevent contributor leakage.",
+    "One centered five-second weak-label window is derived per retained recording.",
+    "The source supports Cicadidae versus Orthoptera; no unsupported suborder label is inferred."
+  ],
+  "repository": "https://huggingface.co/datasets/academic-datasets/InsectSet459",
+  "repository_revision": "11b209dd8754ee45128c258e5337b69f2acaafbd",
+  "retrieved_at": "2026-07-15T14:48:56-04:00",
+  "rights_lane": "core_releasable",
+  "schema_version": 1,
+  "source_id": "insectset459-v1.1-hf-11b209d",
+  "taxonomy_authority": "GBIF Species API v1",
+  "taxonomy_manifest_sha256": "f90aea77a7d5a151f953456b84a469634544fefb8bc8a93178dce5f2900af23f",
+  "title": "InsectSet459 v1.1 permissive subset",
+  "version_doi": "10.5281/zenodo.18554693"
+}

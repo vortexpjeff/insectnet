@@ -1,0 +1,184 @@
+{
+  "artifact": "insectnet-research-0.2.0-perch2.joblib",
+  "artifact_bytes": 73448,
+  "artifact_sha256": "27bf603a6dec2df2789b3bf9241f5e035ccdea5909c4ecf252623ff9304afe32",
+  "classes": [
+    "insect_present",
+    "cicada",
+    "orthoptera"
+  ],
+  "counts": {
+    "label": {
+      "cicada": 1009,
+      "insect_present": 2096,
+      "orthoptera": 1087
+    },
+    "partition": {
+      "test": 598,
+      "train": 3047,
+      "validation": 796
+    },
+    "rights_lane": {
+      "core_releasable": 2481,
+      "research_noncommercial": 1960
+    },
+    "source": {
+      "esc50": 1960,
+      "inat-cat-negatives": 26,
+      "inat-chicken-negatives": 42,
+      "insectset459": 2096,
+      "ross308-negatives": 317
+    }
+  },
+  "created_at": "2026-07-15T15:27:01-04:00",
+  "dataset_hash": "d59cde46a933b85c1cd46f944c6df5c9c6a7587efe7c354b5cbe22b2d0698240",
+  "datasets": [
+    {
+      "embeddings_sha256": "bd5edc073a0e4a3e3f6be6a0a0fcbbc31b2f4abb6bbc856bf15ef058bb003fe1",
+      "name": "insectset459",
+      "samples": 2096,
+      "window_ids_sha256": "cf7af0cc15b6cd583df351f1adec22c297e90f6e0682adf738ebad81370dafc8",
+      "windows_manifest_sha256": "b4033e48f0f8a96284fd0e196f3effced7dd449b22b1b73ffd871db5faad3107"
+    },
+    {
+      "embeddings_sha256": "7be1d502f42ab283e81159a7474be2dda35dd1fdea2b8aa1279c327c646daa19",
+      "name": "esc50",
+      "samples": 1960,
+      "window_ids_sha256": "0d88b82bb3650b6db501916e3ef573b56b23a36378dade40f8eb00b75fb06e0b",
+      "windows_manifest_sha256": "a1a54b769a32200068cb1a58f30878a85fdd9469d61bf64b87f1486659718972"
+    },
+    {
+      "embeddings_sha256": "7566340a0a5a5803a5ed3ff1694f9f32f951140ecf468fa3d550ecf978115b31",
+      "name": "ross308-negatives",
+      "samples": 317,
+      "window_ids_sha256": "d48fedcd61fa83b3178dc67fddad1b2636a8629c9d07d37e68ff7662a096f3a2",
+      "windows_manifest_sha256": "5690fcb557d3ab32a1d0f5ae6f975380fa0e214040efb3de6ec32aa2885878e7"
+    },
+    {
+      "embeddings_sha256": "807d4b8df8ecd9c7e68bec45213e56d30902879c5283a6092e38df5c270e9332",
+      "name": "inat-chicken-negatives",
+      "samples": 42,
+      "window_ids_sha256": "79e9731f221876920b9c75d9408d28de254f995b7db887778fec5dcacf0d7f3f",
+      "windows_manifest_sha256": "9ba2063ef48f77da16c280182a68b2701676c316c1a2e43c35786dcfd44dd39d"
+    },
+    {
+      "embeddings_sha256": "7f8557aa91b0963e61dfdd494fdc46ab3dbdabe20630eaa8bc373fe97c9b9d92",
+      "name": "inat-cat-negatives",
+      "samples": 26,
+      "window_ids_sha256": "48fdb906e50027887702df47f99f2f82576b5a4500abc3e6b5d01ba2605258b3",
+      "windows_manifest_sha256": "c528838b4dcece9b564472e4eb9a76b7e75943d957cb9768b01af61a1c475179"
+    }
+  ],
+  "deployment_status": "research_candidate_not_deployed",
+  "feature_contract": {
+    "backbone": "Google Perch 2 CPU",
+    "embedding_dimension": 1536,
+    "input": "5 seconds, 32 kHz, mono, float32",
+    "perch_model_tree_sha256": "3fb2d54b3e34534f1130052b25737e54bbb5ebfd340ec040d4510772b64c81ff"
+  },
+  "label_hierarchy": {
+    "cicada": "insect_present",
+    "orthoptera": "insect_present"
+  },
+  "linear_svm_audit": {
+    "model_family": "linear_svc_audit_only",
+    "per_class": {
+      "cicada": {
+        "test_average_precision": 0.9283098484284981,
+        "test_f1": 0.8235294117647058,
+        "test_precision": 0.7647058823529411,
+        "test_recall": 0.8921568627450981,
+        "test_support": 102,
+        "threshold": -0.38090459884689665
+      },
+      "insect_present": {
+        "test_average_precision": 0.9829975841704632,
+        "test_f1": 0.9409368635437881,
+        "test_precision": 0.9058823529411765,
+        "test_recall": 0.9788135593220338,
+        "test_support": 236,
+        "threshold": -0.6137395227034173
+      },
+      "orthoptera": {
+        "test_average_precision": 0.934534765582772,
+        "test_f1": 0.8619528619528619,
+        "test_precision": 0.7852760736196319,
+        "test_recall": 0.9552238805970149,
+        "test_support": 134,
+        "threshold": -0.18255117485041517
+      }
+    },
+    "score_semantics": "uncalibrated decision score",
+    "test_macro_average_precision": 0.9486140660605779,
+    "test_macro_f1": 0.8754730457537853
+  },
+  "metrics": {
+    "test": {
+      "macro_average_precision": 0.9630870995268097,
+      "macro_f1": 0.9099968258186436,
+      "per_class": {
+        "cicada": {
+          "average_precision": 0.9591068466525812,
+          "f1": 0.892018779342723,
+          "precision": 0.8558558558558559,
+          "recall": 0.9313725490196079,
+          "support": 102
+        },
+        "insect_present": {
+          "average_precision": 0.9869513110677639,
+          "f1": 0.9625,
+          "precision": 0.9467213114754098,
+          "recall": 0.9788135593220338,
+          "support": 236
+        },
+        "orthoptera": {
+          "average_precision": 0.9432031408600843,
+          "f1": 0.8754716981132076,
+          "precision": 0.8854961832061069,
+          "recall": 0.8656716417910447,
+          "support": 134
+        }
+      },
+      "samples": 598
+    },
+    "validation": {
+      "macro_average_precision": 0.9619324853585015,
+      "macro_f1": 0.9243906454106471,
+      "per_class": {
+        "cicada": {
+          "average_precision": 0.9950197527923852,
+          "f1": 0.9683860232945092,
+          "precision": 0.9572368421052632,
+          "recall": 0.9797979797979798,
+          "support": 297
+        },
+        "insect_present": {
+          "average_precision": 0.9947252134454897,
+          "f1": 0.974910394265233,
+          "precision": 0.9760765550239234,
+          "recall": 0.9737470167064439,
+          "support": 419
+        },
+        "orthoptera": {
+          "average_precision": 0.8960524898376294,
+          "f1": 0.8298755186721992,
+          "precision": 0.8403361344537815,
+          "recall": 0.819672131147541,
+          "support": 122
+        }
+      },
+      "samples": 796
+    }
+  },
+  "model_name": "insectnet-research",
+  "random_state": 42,
+  "samples": 4441,
+  "schema_version": 1,
+  "thresholds": {
+    "cicada": 0.08,
+    "insect_present": 0.25,
+    "orthoptera": 0.74
+  },
+  "training_manifest_sha256": "8e616f93a08c2e4634187423269a1256bd0387b6bac1afbed9125002fa6672e0",
+  "version": "0.2.0-perch2"
+}

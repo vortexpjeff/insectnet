@@ -1,0 +1,29 @@
+{
+  "complete_permissive_train_validation_observation_set": true,
+  "completion_method": "HF Parquet permissive rows plus direct original URLs from frozen annotation manifest",
+  "direct_failures": 0,
+  "downloads_manifest_sha256": "817ed41590c80799cf99fc24960e686c77f80681b50006e8cbfe2b5c7f518fb4",
+  "exclusions_manifest_sha256": "844415b4f7f460fc3468a32ad03271c1490667c061dfd797676ad185fbe62dd5",
+  "labels": {
+    "cicada": 1009,
+    "insect_present": 2096,
+    "orthoptera": 1087
+  },
+  "licenses": {
+    "CC-BY-4.0": 1727,
+    "CC0-1.0": 369
+  },
+  "partitions": {
+    "test": 236,
+    "train": 1441,
+    "validation": 419
+  },
+  "recordings": 2096,
+  "recordings_manifest_sha256": "09e5f5b205b772e4862a39e663676a0964c832f2e5ea23e3333283d7f80ff2be",
+  "repository_revision": "11b209dd8754ee45128c258e5337b69f2acaafbd",
+  "schema_version": 1,
+  "source_id": "insectset459-v1.1-hf-11b209d",
+  "unique_expected_observations": 2096,
+  "windows": 2096,
+  "windows_manifest_sha256": "b4033e48f0f8a96284fd0e196f3effced7dd449b22b1b73ffd871db5faad3107"
+}

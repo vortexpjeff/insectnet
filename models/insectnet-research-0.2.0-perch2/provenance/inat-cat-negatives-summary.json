@@ -1,0 +1,18 @@
+{
+  "partition_policy": "deterministic SHA-256 by existing group_id: 70/15/15",
+  "partitions": {
+    "test": 5,
+    "train": 18,
+    "validation": 3
+  },
+  "reason": "Domestic Cat taxon sound; no insect target annotation, incidental background insects remain possible",
+  "rights_lanes": {
+    "core_releasable": 26
+  },
+  "role": "insectnet_hard_negative",
+  "schema_version": 1,
+  "source_windows_manifest": "windows.jsonl",
+  "source_windows_manifest_sha256": "eda23f0c149ceaadc7aa6fbe58afda4cef7c76b2c6dd53b800a7daefb4def893",
+  "windows": 26,
+  "windows_manifest_sha256": "c528838b4dcece9b564472e4eb9a76b7e75943d957cb9768b01af61a1c475179"
+}

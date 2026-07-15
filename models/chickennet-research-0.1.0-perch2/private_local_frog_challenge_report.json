@@ -1,0 +1,75 @@
+{
+  "artifact": "chickennet-research-0.1.0-perch2.joblib",
+  "artifact_sha256": "a5b83b648b19d2837fe775161cf35fce22f2a717e630c08253f2b9c6d2fe58d0",
+  "challenge": "private-local-frog-stationary-mic",
+  "challenge_windows_sha256": "d1b4e4fa00c66668802909c04152b87d370e7632b823356f19068b6df428e3a7",
+  "embeddings_sha256": "b3a445fed48b81338a98ebd7d1df4be1f38fc49c2457e466afa9c2a93d9217a2",
+  "groups": 436,
+  "hierarchy_gated_outputs": {
+    "chicken_crow": {
+      "rate": 0.006880733944954129,
+      "windows": 9
+    },
+    "chicken_other_vocalization": {
+      "rate": 0.0,
+      "windows": 0
+    },
+    "chicken_vocalization_present": {
+      "rate": 0.00764525993883792,
+      "windows": 10
+    }
+  },
+  "interpretation": "Reviewed for frog presence, not chicken absence. Candidate activation upper bound pending listening review; private paths and audio excluded from public artifacts.",
+  "label_hierarchy": {
+    "chicken_crow": "chicken_vocalization_present",
+    "chicken_other_vocalization": "chicken_vocalization_present"
+  },
+  "mode": "activation",
+  "primary_class": "chicken_vocalization_present",
+  "primary_gated_rate": 0.00764525993883792,
+  "raw_head_crossings": {
+    "chicken_crow": {
+      "rate": 0.006880733944954129,
+      "score_quantiles": {
+        "0.0": 5.426684516477836e-05,
+        "0.1": 0.00030086214464496354,
+        "0.5": 0.0005100838655488723,
+        "0.9": 0.0011112408978539304,
+        "0.99": 0.017119367547895583,
+        "1.0": 0.9967951692641189
+      },
+      "windows": 9
+    },
+    "chicken_other_vocalization": {
+      "rate": 0.0,
+      "score_quantiles": {
+        "0.0": 0.00012734562936894952,
+        "0.1": 0.0012518019892757482,
+        "0.5": 0.0021365188869914916,
+        "0.9": 0.003925400838448094,
+        "0.99": 0.010399051165720917,
+        "1.0": 0.05366941086563872
+      },
+      "windows": 0
+    },
+    "chicken_vocalization_present": {
+      "rate": 0.00764525993883792,
+      "score_quantiles": {
+        "0.0": 0.00025222606651083144,
+        "0.1": 0.0012422338118227149,
+        "0.5": 0.0021877237184642923,
+        "0.9": 0.0050578131289023675,
+        "0.99": 0.11563479364012412,
+        "1.0": 0.968345472460387
+      },
+      "windows": 10
+    }
+  },
+  "samples": 1308,
+  "schema_version": 1,
+  "thresholds_locked_before_challenge": {
+    "chicken_crow": 0.2,
+    "chicken_other_vocalization": 0.34,
+    "chicken_vocalization_present": 0.21
+  }
+}

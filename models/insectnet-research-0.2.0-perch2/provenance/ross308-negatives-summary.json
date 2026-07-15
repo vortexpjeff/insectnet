@@ -1,0 +1,17 @@
+{
+  "partitions": {
+    "test": 74,
+    "train": 150,
+    "validation": 93
+  },
+  "reason": "Controlled chicken vocalization and animal-free poultry ambient audio; no insect target annotations",
+  "rights_lanes": {
+    "core_releasable": 317
+  },
+  "role": "insectnet_hard_negative",
+  "schema_version": 1,
+  "source_windows_manifest": "windows.jsonl",
+  "source_windows_manifest_sha256": "cf1b81acbdb1c4d4f9ff4a1d9ef62203a68c4a8f94079d5dd005abd036e0968b",
+  "windows": 317,
+  "windows_manifest_sha256": "5690fcb557d3ab32a1d0f5ae6f975380fa0e214040efb3de6ec32aa2885878e7"
+}

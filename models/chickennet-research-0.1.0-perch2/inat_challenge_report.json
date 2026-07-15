@@ -1,0 +1,75 @@
+{
+  "artifact": "chickennet-research-0.1.0-perch2.joblib",
+  "artifact_sha256": "a5b83b648b19d2837fe775161cf35fce22f2a717e630c08253f2b9c6d2fe58d0",
+  "challenge": "inaturalist-domestic-chicken-2026-07-15",
+  "challenge_windows_sha256": "7011c1f5e73f6c7771eff9ee62b04359f2cb61714c92c51e3cdc37364718d075",
+  "embeddings_sha256": "807d4b8df8ecd9c7e68bec45213e56d30902879c5283a6092e38df5c270e9332",
+  "groups": 30,
+  "hierarchy_gated_outputs": {
+    "chicken_crow": {
+      "rate": 0.2619047619047619,
+      "windows": 11
+    },
+    "chicken_other_vocalization": {
+      "rate": 0.40476190476190477,
+      "windows": 17
+    },
+    "chicken_vocalization_present": {
+      "rate": 0.7857142857142857,
+      "windows": 33
+    }
+  },
+  "interpretation": "Taxon-level weak-positive challenge; centered crop may not contain an audible call. No negatives, so precision is not measurable.",
+  "label_hierarchy": {
+    "chicken_crow": "chicken_vocalization_present",
+    "chicken_other_vocalization": "chicken_vocalization_present"
+  },
+  "mode": "weak-positive",
+  "primary_class": "chicken_vocalization_present",
+  "primary_gated_rate": 0.7857142857142857,
+  "raw_head_crossings": {
+    "chicken_crow": {
+      "rate": 0.2619047619047619,
+      "score_quantiles": {
+        "0.0": 5.5684629367855985e-05,
+        "0.1": 0.00012708003031957374,
+        "0.5": 0.0073280827621163645,
+        "0.9": 0.9945621166118852,
+        "0.99": 0.9986747256678972,
+        "1.0": 0.9987926071867479
+      },
+      "windows": 11
+    },
+    "chicken_other_vocalization": {
+      "rate": 0.42857142857142855,
+      "score_quantiles": {
+        "0.0": 0.00014350996865452356,
+        "0.1": 0.0031498531564777997,
+        "0.5": 0.08466841800634038,
+        "0.9": 0.9965092352406145,
+        "0.99": 0.9992581671028566,
+        "1.0": 0.9994851984806212
+      },
+      "windows": 18
+    },
+    "chicken_vocalization_present": {
+      "rate": 0.7857142857142857,
+      "score_quantiles": {
+        "0.0": 0.0002863216367057877,
+        "0.1": 0.02973117202938955,
+        "0.5": 0.8578702463688059,
+        "0.9": 0.9989863834215036,
+        "0.99": 0.9996458931494182,
+        "1.0": 0.9997591356154928
+      },
+      "windows": 33
+    }
+  },
+  "samples": 42,
+  "schema_version": 1,
+  "thresholds_locked_before_challenge": {
+    "chicken_crow": 0.2,
+    "chicken_other_vocalization": 0.34,
+    "chicken_vocalization_present": 0.21
+  }
+}
