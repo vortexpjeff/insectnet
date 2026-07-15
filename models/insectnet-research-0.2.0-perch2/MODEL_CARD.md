@@ -11,8 +11,9 @@ tags:
 
 # InsectNet Research 0.2.0 — Perch 2
 
-A reproducible research classifier for broad insect presence, cicadas, and Orthoptera,
-fitted on frozen 1,536-dimensional Google Perch 2 embeddings.
+A deterministically built research classifier for broad insect presence, cicadas, and
+Orthoptera, fitted on frozen 1,536-dimensional Google Perch 2 embeddings. Exact row-level
+training manifests are retained privately rather than redistributed.
 
 > **Status: trained research artifact, not field-ready and not deployed.** The locked
 > independent dog challenge produced broad insect activations in 11/26 windows. Do not
@@ -122,8 +123,8 @@ Do not feed waveforms directly into this artifact.
 
 ## What is validated
 
-- Exact data, window, embedding, and artifact hashes are recorded.
-- Contributor/observer/source groups do not cross partitions.
+- Exact retained-private data, window, embedding, and artifact hashes are recorded.
+- The private build audit found no contributor/observer/source groups crossing partitions.
 - Only CC0, CC BY, and the explicitly noncommercial ESC-50 research lane were used.
 - Broad/subtype hierarchy is serialized and tested.
 - The model loads and scores finite Perch embeddings.
@@ -153,5 +154,7 @@ fine-tuning or a richer temporal head rather than another threshold-only adjustm
 - Ross-308: Díaz de Cerio et al., DOI `10.34810/DATA3437`
 - Perch: Ghani et al., *Global birdsong embeddings enable superior transfer learning for bioacoustic classification* (2023)
 
-Exact source summaries, hashes, metrics, and challenge reports are included beside the
-artifact.
+Source summaries, retained-private manifest hashes, metrics, and challenge reports are
+included beside the artifact. The public bundle supports artifact/summary consistency
+checks but cannot independently reconstruct every row or split assignment without the
+retained private manifests and source audio.

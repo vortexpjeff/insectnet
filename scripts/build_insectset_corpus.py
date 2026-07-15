@@ -267,7 +267,7 @@ def build(
         raise ValueError("--resume-processed-rows is required with --resume-train-index")
 
     session = requests.Session()
-    session.headers["User-Agent"] = "PineHollowResearch/1.0"
+    session.headers["User-Agent"] = "BioacousticsModelResearch/1.0"
     hf_info = session.get(f"https://huggingface.co/api/datasets/{HF_REPO}", timeout=60)
     hf_info.raise_for_status()
     hf_metadata = hf_info.json()

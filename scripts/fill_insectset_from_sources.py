@@ -89,7 +89,7 @@ def make_window(raw_path: Path, window_path: Path) -> tuple[float, float]:
 
 
 def download(row: dict[str, str]) -> tuple[dict[str, str], bytes, str]:
-    headers = {"User-Agent": "PineHollowResearch/1.0"}
+    headers = {"User-Agent": "BioacousticsModelResearch/1.0"}
     last_error = ""
     for attempt in range(5):
         try:

@@ -93,19 +93,12 @@ No private paths or audio are included in the public artifact.
 
 ```python
 import joblib
+from insectnet.candidate import active_labels, predict_candidate
 
 package = joblib.load("chickennet-research-0.1.0-perch2.joblib")
 embedding = ...  # shape (N, 1536), produced by the verified Perch 2 feature contract
-scaled = package["scaler"].transform(embedding)
-
-scores = {
-    name: package["heads"][name].predict_proba(scaled)[:, 1]
-    for name in package["classes"]
-}
-detections = {
-    name: scores[name] >= package["thresholds"][name]
-    for name in package["classes"]
-}
+scores = predict_candidate(package, embedding)
+detections = [active_labels(package, row) for row in scores]
 ```
 
 Do not feed waveforms directly into this artifact.
@@ -127,4 +120,7 @@ Do not feed waveforms directly into this artifact.
 - ESC-50: Piczak, DOI `10.1145/2733373.2806390`
 - Perch: Ghani et al., *Global birdsong embeddings enable superior transfer learning for bioacoustic classification*, Scientific Reports (2023)
 
-Exact source summaries, manifest hashes, run metrics, and the public challenge report are included alongside the artifact.
+Source summaries, retained-private manifest hashes, run metrics, and the public challenge
+report are included alongside the artifact. Exact row-level training manifests are not
+published; the public bundle supports artifact/summary consistency checks but cannot by
+itself reproduce every split assignment.

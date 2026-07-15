@@ -29,7 +29,7 @@ FORBIDDEN = {
     "exact_coordinates": re.compile("35" + r"\.856|83" + r"\.374"),
     "private_ipv4": re.compile("192" + r"\.168\.1\.223"),
     "street_address": re.compile("114" + r"7\s+Pine", re.IGNORECASE),
-    "private_site_name": re.compile("Pine" + r"\s+Hollow", re.IGNORECASE),
+    "private_site_name": re.compile("Pine" + r"[\s_-]*Hollow", re.IGNORECASE),
     "private_city": re.compile("Sevier" + "ville", re.IGNORECASE),
     "private_state_context": re.compile("Tennes" + "see", re.IGNORECASE),
     "windows_private_path": re.compile(
@@ -60,6 +60,13 @@ def test_public_tree_contains_no_location_or_access_data() -> None:
             if pattern.search(text):
                 violations.append(f"{path.relative_to(ROOT)}:{label}")
     assert violations == []
+
+
+def test_private_site_pattern_covers_common_compact_variants() -> None:
+    pattern = FORBIDDEN["private_site_name"]
+    stem = "Pine"
+    for value in (f"{stem} Hollow", f"{stem}Hollow", f"{stem}-Hollow", f"{stem}_Hollow"):
+        assert pattern.search(value)
 
 
 def test_no_deployment_or_live_capture_scripts_are_published() -> None:

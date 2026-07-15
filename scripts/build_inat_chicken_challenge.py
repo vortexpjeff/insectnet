@@ -88,7 +88,7 @@ def make_center_window(raw_path: Path, output_path: Path, duration: float) -> fl
 
 def build(work_dir: Path) -> None:
     session = requests.Session()
-    session.headers["User-Agent"] = "PineHollowResearch/1.0"
+    session.headers["User-Agent"] = "BioacousticsModelResearch/1.0"
     observations: list[dict[str, Any]] = []
     total = None
     page = 1

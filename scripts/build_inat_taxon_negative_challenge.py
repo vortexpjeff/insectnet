@@ -115,7 +115,7 @@ def build(
     min_sounds: int,
 ) -> None:
     session = requests.Session()
-    session.headers["User-Agent"] = "PineHollowResearch/1.0"
+    session.headers["User-Agent"] = "BioacousticsModelResearch/1.0"
     observations: list[dict[str, Any]] = []
     total = None
     page = 1
