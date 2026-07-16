@@ -22,19 +22,29 @@ MANIFEST_IDENTITY_FIELDS = (
 )
 
 
+def _label_set(row: Mapping[str, object], key: str) -> set[str]:
+    value = row.get(key, [])
+    if not isinstance(value, Sequence) or isinstance(value, (str, bytes)):
+        raise ValueError(f"manifest field {key} must be a sequence of labels")
+    return {str(label) for label in value}
+
+
 def _canonical_row(row: Mapping[str, object]) -> dict[str, object]:
     missing = [key for key in MANIFEST_IDENTITY_FIELDS if key not in row]
     if missing:
         raise ValueError(f"manifest row missing fields: {', '.join(missing)}")
-    return {
+    canonical = {
         "window_id": str(row["window_id"]),
         "recording_id": str(row["recording_id"]),
-        "labels": sorted({str(label) for label in row["labels"]}),
+        "labels": sorted(_label_set(row, "labels")),
         "group_id": str(row["group_id"]),
         "partition": str(row["partition"]),
         "sample_weight": float(row["sample_weight"]),
         "rights_lane": str(row["rights_lane"]),
     }
+    if "unknown_labels" in row:
+        canonical["unknown_labels"] = sorted(_label_set(row, "unknown_labels"))
+    return canonical
 
 
 def validate_manifest(rows: Sequence[Mapping[str, object]]) -> None:
@@ -56,6 +66,15 @@ def validate_manifest(rows: Sequence[Mapping[str, object]]) -> None:
         if float(item["sample_weight"]) <= 0:
             raise ValueError(f"sample_weight must be positive for {window_id}")
 
+        labels = _label_set(item, "labels")
+        unknown_labels = _label_set(item, "unknown_labels")
+        overlap = sorted(labels & unknown_labels)
+        if overlap:
+            raise ValueError(
+                f"manifest row {window_id} marks labels both known-positive and unknown: "
+                f"{', '.join(overlap)}"
+            )
+
         group_id = str(item["group_id"])
         previous = group_partitions.setdefault(group_id, partition)
         if previous != partition:
@@ -71,8 +90,22 @@ def canonical_manifest_hash(rows: Sequence[Mapping[str, object]]) -> str:
 
 def _indicator(rows: Sequence[Mapping[str, object]], class_name: str) -> np.ndarray:
     return np.asarray(
-        [int(class_name in {str(label) for label in row["labels"]}) for row in rows],
+        [int(class_name in _label_set(row, "labels")) for row in rows],
         dtype=np.int8,
+    )
+
+
+def _eligible_indices(
+    rows: Sequence[Mapping[str, object]], class_name: str, partition: str
+) -> np.ndarray:
+    return np.asarray(
+        [
+            index
+            for index, row in enumerate(rows)
+            if row["partition"] == partition
+            and class_name not in _label_set(row, "unknown_labels")
+        ],
+        dtype=np.int64,
     )
 
 
@@ -102,12 +135,13 @@ def _partition_metrics(
     package: Mapping[str, Any],
     X_scaled: np.ndarray,
     rows: Sequence[Mapping[str, object]],
-    indices: np.ndarray,
+    partition: str,
 ) -> dict[str, object]:
     per_class: dict[str, dict[str, float | int]] = {}
     f1_values: list[float] = []
     ap_values: list[float] = []
     for class_name in package["classes"]:
+        indices = _eligible_indices(rows, class_name, partition)
         y_true = _indicator(rows, class_name)[indices]
         scores = package["heads"][class_name].predict_proba(X_scaled[indices])[:, 1]
         predicted = scores >= package["thresholds"][class_name]
@@ -125,6 +159,7 @@ def _partition_metrics(
             average_precision = float("nan")
         f1_values.append(float(f1))
         per_class[class_name] = {
+            "evaluated_samples": int(len(indices)),
             "support": int(y_true.sum()),
             "precision": float(precision),
             "recall": float(recall),
@@ -132,7 +167,7 @@ def _partition_metrics(
             "average_precision": average_precision,
         }
     return {
-        "samples": int(len(indices)),
+        "samples": int(sum(row["partition"] == partition for row in rows)),
         "macro_f1": float(np.mean(f1_values)),
         "macro_average_precision": float(np.mean(ap_values)) if ap_values else float("nan"),
         "per_class": per_class,
@@ -180,11 +215,15 @@ def fit_candidate(
 
     heads: dict[str, LogisticRegression] = {}
     thresholds: dict[str, float] = {}
+    head_eligibility: dict[str, dict[str, int]] = {}
     for class_name in ordered_classes:
         y = _indicator(rows, class_name)
-        if len(np.unique(y[train_indices])) != 2:
+        eligible_train = _eligible_indices(rows, class_name, "train")
+        eligible_validation = _eligible_indices(rows, class_name, "validation")
+        eligible_test = _eligible_indices(rows, class_name, "test")
+        if len(np.unique(y[eligible_train])) != 2:
             raise ValueError(f"class {class_name} needs positive and negative training rows")
-        if len(np.unique(y[validation_indices])) != 2:
+        if len(np.unique(y[eligible_validation])) != 2:
             raise ValueError(f"class {class_name} needs positive and negative validation rows")
         head = LogisticRegression(
             C=logistic_c,
@@ -194,30 +233,39 @@ def fit_candidate(
             solver="lbfgs",
         )
         head.fit(
-            X_scaled[train_indices],
-            y[train_indices],
-            sample_weight=sample_weights[train_indices],
+            X_scaled[eligible_train],
+            y[eligible_train],
+            sample_weight=sample_weights[eligible_train],
         )
-        validation_scores = head.predict_proba(X_scaled[validation_indices])[:, 1]
+        validation_scores = head.predict_proba(X_scaled[eligible_validation])[:, 1]
         heads[class_name] = head
-        thresholds[class_name] = _best_threshold(y[validation_indices], validation_scores)
+        thresholds[class_name] = _best_threshold(
+            y[eligible_validation], validation_scores
+        )
+        head_eligibility[class_name] = {
+            "train": int(len(eligible_train)),
+            "validation": int(len(eligible_validation)),
+            "test": int(len(eligible_test)),
+        }
 
     package: dict[str, object] = {
-        "schema_version": 1,
+        "schema_version": 2,
         "model_family": "perch2_independent_logistic_heads",
         "classes": ordered_classes,
         "label_hierarchy": hierarchy,
         "thresholds": thresholds,
         "scaler": scaler,
         "heads": heads,
+        "head_eligibility": head_eligibility,
+        "label_semantics": "per_head_unknown_labels_v1",
         "feature_dimension": int(X.shape[1]),
         "dataset_hash": canonical_manifest_hash(rows),
         "random_state": random_state,
         "logistic_c": logistic_c,
     }
     package["metrics"] = {
-        "validation": _partition_metrics(package, X_scaled, rows, validation_indices),
-        "test": _partition_metrics(package, X_scaled, rows, test_indices),
+        "validation": _partition_metrics(package, X_scaled, rows, "validation"),
+        "test": _partition_metrics(package, X_scaled, rows, "test"),
     }
     return package
 

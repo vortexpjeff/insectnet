@@ -81,6 +81,16 @@ def svm_audit(
     test_ap: list[float] = []
     for class_name in classes:
         labels = np.asarray([int(class_name in row["labels"]) for row in rows])
+        eligible = np.asarray(
+            [
+                class_name
+                not in {str(label) for label in row.get("unknown_labels", [])}
+                for row in rows
+            ]
+        )
+        class_train = train[eligible[train]]
+        class_validation = validation[eligible[validation]]
+        class_test = test[eligible[test]]
         model = LinearSVC(
             C=0.1,
             class_weight="balanced",
@@ -89,17 +99,22 @@ def svm_audit(
             random_state=random_state,
         )
         model.fit(
-            transformed[train], labels[train], sample_weight=sample_weights[train]
+            transformed[class_train],
+            labels[class_train],
+            sample_weight=sample_weights[class_train],
         )
-        threshold = best_threshold(labels[validation], model.decision_function(transformed[validation]))
-        scores = model.decision_function(transformed[test])
+        threshold = best_threshold(
+            labels[class_validation],
+            model.decision_function(transformed[class_validation]),
+        )
+        scores = model.decision_function(transformed[class_test])
         predicted = scores >= threshold
         precision, recall, f1, _ = precision_recall_fscore_support(
-            labels[test], predicted, average="binary", zero_division=0
+            labels[class_test], predicted, average="binary", zero_division=0
         )
         average_precision = (
-            float(average_precision_score(labels[test], scores))
-            if len(np.unique(labels[test])) == 2
+            float(average_precision_score(labels[class_test], scores))
+            if len(np.unique(labels[class_test])) == 2
             else float("nan")
         )
         test_f1.append(float(f1))
@@ -107,7 +122,8 @@ def svm_audit(
             test_ap.append(average_precision)
         per_class[class_name] = {
             "threshold": threshold,
-            "test_support": int(labels[test].sum()),
+            "test_samples": int(len(class_test)),
+            "test_support": int(labels[class_test].sum()),
             "test_precision": float(precision),
             "test_recall": float(recall),
             "test_f1": float(f1),
@@ -207,6 +223,9 @@ def train(
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
     svm = svm_audit(features, all_rows, classes, random_state)
     label_counts = Counter(label for row in all_rows for label in row["labels"])
+    unknown_label_counts = Counter(
+        label for row in all_rows for label in row.get("unknown_labels", [])
+    )
     partition_counts = Counter(str(row["partition"]) for row in all_rows)
     source_counts = Counter(str(row["dataset_name"]) for row in all_rows)
     rights_counts = Counter(str(row["rights_lane"]) for row in all_rows)
@@ -230,6 +249,7 @@ def train(
         "counts": {
             "partition": dict(partition_counts),
             "label": dict(label_counts),
+            "unknown_label": dict(unknown_label_counts),
             "source": dict(source_counts),
             "rights_lane": dict(rights_counts),
         },

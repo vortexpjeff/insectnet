@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added per-head `unknown_labels` manifest semantics for partially reviewed multi-label audio. Candidate schema version 2 excludes unknown rows from the affected head's training, threshold selection, and evaluation, records eligibility counts, and includes uncertainty in the canonical dataset hash.
+
 ## v0.1.0-clean — 2026-07-14
 
 - Preserved the original v0.1 classifier bytes and checksum.
