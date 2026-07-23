@@ -112,17 +112,19 @@ The command returns one probability per declared class. These scores are model a
 - The classifier relies on BirdNET logits and cannot score raw audio by itself.
 - There is no validated automated-decision threshold policy in this release.
 
-## Perch 2 research candidates
+## Perch 2 research candidates and field probes
 
-Two provenance-locked candidates were trained and audited in July 2026. Neither replaces
-the preserved BirdNET-logit v0.1 artifact.
+Three provenance-locked specialist lines were trained and audited in July 2026. None
+replaces the preserved BirdNET-logit v0.1 artifact. The public research packages remain
+distinct from the later strict JSON/NPZ bundles used by the private field listener.
 
 | Candidate | Status | Key external result |
 |---|---|---|
 | [ChickenNet Research 0.1.0](models/chickennet-research-0.1.0-perch2/MODEL_CARD.md) | research candidate; not deployed | 33/42 broad-head hits on a locked iNaturalist chicken challenge; 10/1,308 candidate activations on a private local confound set |
 | [InsectNet Research 0.2.0](models/insectnet-research-0.2.0-perch2/MODEL_CARD.md) | trained but not field-ready; not deployed | 11/26 broad activations on an untouched iNaturalist dog challenge |
+| [FrogNet field probe v0.1.0](docs/FROGNET_FIELD_PROBE.md) | noncommercial research prerelease; strict bundle deployed privately | 1,253/1,308 local frog-window activations and 0/3,781 tested confound activations at threshold `0.95` |
 
-Both artifacts consume 1,536-dimensional Google Perch 2 embeddings from five-second,
+All three lines consume 1,536-dimensional Google Perch 2 embeddings from five-second,
 32 kHz mono windows. They include exact model/data hashes, grouped split reports,
 hierarchy contracts, source summaries, and challenge reports. They do not include Perch
 weights or source audio.
@@ -130,8 +132,8 @@ weights or source audio.
 ## Training strategy
 
 [`docs/PERCH2_TRAINING_STRATEGY.md`](docs/PERCH2_TRAINING_STRATEGY.md) records the
-provenance-first design used for the Perch 2 InsectNet and ChickenNet candidates. Those
-candidates remain separate from the preserved v0.1.0 artifact.
+provenance-first design used for the Perch 2 specialist heads. The current FrogNet
+deployment and release contract is frozen in [`docs/FROGNET_FIELD_PROBE.md`](docs/FROGNET_FIELD_PROBE.md).
 
 ## Provenance
 

@@ -1,16 +1,22 @@
-# Perch 2 training strategy for InsectNet and ChickenNet
+# Perch 2 training strategy for InsectNet, ChickenNet, and FrogNet
 
-Status: research and planning only  
-Prepared: 2026-07-15  
+Status: original research plan with deployed FrogNet amendment
+Prepared: 2026-07-15
+Amended: 2026-07-22
 Scope: future model candidates; this document does not alter or supersede the preserved InsectNet v0.1.0 artifact.
 
 ## Decision
 
-Train two specialist packages on a shared, frozen Perch 2 embedding backbone:
+Train independent specialist packages on a shared, frozen Perch 2 embedding backbone:
 
 - **InsectNet:** independent heads for insect presence and broad audible insect groups.
 - **ChickenNet:** independent heads for audible chicken vocalization, crow, and other chicken vocalization.
-- **FrogNet:** a separate future head. Frog audio is used as reviewed hard-negative and overlap material for the other models, not as an InsectNet class.
+- **FrogNet:** a separate broad `frog_present` head. Frog audio remains overlap and hard-negative material for the other models, never an InsectNet class.
+
+The broad FrogNet dev4 head was deployed on 2026-07-22 as a conservative private field
+probe at threshold `0.95`. It shares each window's frozen embedding with InsectNet and
+ChickenNet and does not change their bundles, thresholds, or event semantics. See
+[`FROGNET_FIELD_PROBE.md`](FROGNET_FIELD_PROBE.md) for the frozen release boundary.
 
 BirdNET remains a separate bird detector. It is not a required feature extractor for these candidates.
 
@@ -49,6 +55,16 @@ Expose independent probabilities for:
 Do not expose `chicken_present`: an audio model cannot infer a silent chicken. No output passing threshold means no audible chicken vocalization; it is not a separate biological class.
 
 Do not train health, disease, stress, welfare, hunger, heat, protein-deficiency, or emotional-state labels. Current public datasets confound those labels with flock, cage, age, room, treatment, recorder, and calendar time.
+
+### FrogNet
+
+Expose one broad probability:
+
+1. `frog_present`
+
+Do not expose species identity from this head. The local corpus is concentrated in a small
+number of dates and chorus sessions; species-level claims require a separate dataset and
+grouped external evaluation. Ambiguous windows remain unknown rather than forced negative.
 
 ### Mixed soundscapes
 
